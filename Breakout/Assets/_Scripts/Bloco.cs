@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class Bloco : MonoBehaviour
 {
+    private AudioSource BlockDestroy;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        BlockDestroy = GetComponent<AudioSource>();
+
+        BlockDestroy.Play();
+
+        Destroy(gameObject, 0.1f);
     }
 }

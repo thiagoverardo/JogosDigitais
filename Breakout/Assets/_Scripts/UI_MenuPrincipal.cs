@@ -15,6 +15,6 @@ public class UI_MenuPrincipal : MonoBehaviour
 
     public void Comecar()
     {
-        gm.ChangeState(GameManager.GameState.GAME);
+        gm.ChangeState(GameManager.GameState.NEWGAME);
     }
 }

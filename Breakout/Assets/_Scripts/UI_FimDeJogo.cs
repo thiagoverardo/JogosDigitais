@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class UI_FimDeJogo : MonoBehaviour
@@ -19,8 +17,8 @@ public class UI_FimDeJogo : MonoBehaviour
             message.text = "Você Perdeu!!";
         }
     }
-    public void Voltar()
+    public void Inicio()
     {
-        gm.ChangeState(GameManager.GameState.GAME);
+        gm.ChangeState(GameManager.GameState.NEWGAME);
     }
 }

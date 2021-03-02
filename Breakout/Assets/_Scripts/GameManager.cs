@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GameManager 
 {
-    public enum GameState { MENU, GAME, PAUSE, ENDGAME };
-
+    public enum GameState { MENU, GAME, PAUSE, ENDGAME, NEWGAME };
     public GameState gameState { get; private set; }
     public int vidas;
     public int pontos;
@@ -33,9 +32,10 @@ public class GameManager
 
     public void ChangeState(GameState nextState)
     {
-        if (nextState == GameState.GAME) Reset();
+        if (nextState == GameState.NEWGAME) Reset();
         gameState = nextState;
         changeStateDelegate();
+        
     }
 
     private void Reset()
