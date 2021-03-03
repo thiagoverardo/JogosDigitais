@@ -19,6 +19,6 @@ public class UI_FimDeJogo : MonoBehaviour
     }
     public void Inicio()
     {
-        gm.ChangeState(GameManager.GameState.NEWGAME);
+        gm.ChangeState(GameManager.GameState.MENU);
     }
 }

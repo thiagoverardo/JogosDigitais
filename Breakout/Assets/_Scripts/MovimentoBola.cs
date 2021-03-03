@@ -21,6 +21,9 @@ public class MovimentoBola : MonoBehaviour
         float dirX = Random.Range(-5.0f, 5.0f);
         float dirY = Random.Range(1.0f, 5.0f);
 
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        transform.position = playerPosition + new Vector3(0, 0.5f, 0);
+
         direcao = new Vector3(dirX, dirY).normalized;        
 
         BallSound = GetComponent<AudioSource>();
