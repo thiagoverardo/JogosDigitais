@@ -5,6 +5,11 @@ using UnityEngine;
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 {
 
+    private int lifes;
+    private void Start()
+    {
+        lifes = 2;
+    }
     public void Shoot()
     {
         throw new System.NotImplementedException();
@@ -12,7 +17,8 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 
     public void TakeDamage()
     {
-        throw new System.NotImplementedException();
+        lifes--;
+        if (lifes <= 0) Die();
     }
 
     public void Die()
@@ -32,4 +38,11 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
         Thrust(x, y);
        
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Tiro") || collision.CompareTag("Player"))
+        {
+            TakeDamage();
+        }
+    }  
 }

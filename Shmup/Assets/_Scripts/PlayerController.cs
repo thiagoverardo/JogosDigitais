@@ -5,18 +5,31 @@ using UnityEngine;
 public class PlayerController : SteerableBehaviour, IShooter, IDamageable
 {
     Animator animator;
+    public AudioClip shootSFX;
+   
+    private int lifes;
     private void Start()
     {
+        lifes = 2;
         animator = GetComponent<Animator>();
     }
+    public GameObject bullet;
+    public Transform arma01;
+    public float shootDelay = 0.1f;
+    private float _lattShootTimestamp = 0.0f;
     public void Shoot()
     {
-        throw new System.NotImplementedException();
+        if (Time.time - _lattShootTimestamp < shootDelay) return;
+        _lattShootTimestamp = Time.time;
+        
+        Instantiate(bullet, arma01.transform.position, Quaternion.identity);
+        AudioManager.PlaySFX(shootSFX);
     }
 
     public void TakeDamage()
     {
-        throw new System.NotImplementedException();
+        lifes--;
+        if (lifes <= 0) Die();
     }
 
     public void Die()
@@ -33,6 +46,10 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
         {
             animator.SetFloat("Velocity", 1.0f);
         }
+        if(Input.GetAxisRaw("Fire1") != 0)
+        {
+            Shoot();
+        }
         else
         {
             animator.SetFloat("Velocity", 0.0f);
@@ -46,6 +63,5 @@ public class PlayerController : SteerableBehaviour, IShooter, IDamageable
             Destroy(collision.gameObject);
             TakeDamage();
         }
-    }
-    
+    }    
 }
