@@ -22,7 +22,7 @@ public abstract class SteerableBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Thrust(float x, float y)
+    public virtual void Thrust(float x, float y)
     {
         rb.MovePosition(rb.position + new Vector2(x * td.thrustIntensity.x, y * td.thrustIntensity.y) * Time.fixedDeltaTime);
     }

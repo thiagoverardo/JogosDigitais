@@ -10,9 +10,11 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
     {
         lifes = 2;
     }
+    public GameObject tiro;
     public void Shoot()
     {
-        throw new System.NotImplementedException();
+        Instantiate(tiro, transform.position, Quaternion.identity);
+        //throw new System.NotImplementedException();
     }
 
     public void TakeDamage()
@@ -40,7 +42,7 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Tiro") || collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             TakeDamage();
         }
