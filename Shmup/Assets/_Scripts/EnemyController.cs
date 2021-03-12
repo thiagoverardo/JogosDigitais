@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 {
-
-    private int lifes;
+    private float lifes;
+    private float maxlifes = 3f;
+    GameManager gm;
+    public HealthBar HealthBar;
     private void Start()
     {
-        lifes = 2;
+        lifes = maxlifes;
+        gm = GameManager.GetInstance();
+        HealthBar.SetHealth(lifes, maxlifes);
     }
     public GameObject tiro;
     public void Shoot()
@@ -19,8 +23,11 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 
     public void TakeDamage()
     {
+        gm.pontos += 10;
         lifes--;
-        if (lifes <= 0) Die();
+        HealthBar.SetHealth(lifes, maxlifes);
+
+        if(lifes <= 0) Die();
     }
 
     public void Die()
@@ -31,14 +38,24 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
     float angle = 0;
 
     private void FixedUpdate()
-    {
-        angle += 0.1f;
-        Mathf.Clamp(angle, 0.0f, 2.0f * Mathf.PI);
-        float x = Mathf.Sin(angle);
-        float y = Mathf.Cos(angle);
+    {        
+        if (gm.gameState != GameManager.GameState.GAME) return;
+        
+        if(GameObject.FindWithTag("Player")){
+            Vector3 screenBounds = GameObject.FindWithTag("Player").transform.position;        
+            if(transform.position.x < (screenBounds.x - 15)){
+                Destroy(gameObject);
+            }
+            angle += 0.1f;
+            Mathf.Clamp(angle, 0.0f, 2.0f * Mathf.PI);
+            float x = Mathf.Sin(angle);
+            float y = Mathf.Cos(angle);
 
-        Thrust(x, y);
-       
+            Thrust(x - 1f, y);
+        }
+        else{
+            Destroy(gameObject);
+        }              
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

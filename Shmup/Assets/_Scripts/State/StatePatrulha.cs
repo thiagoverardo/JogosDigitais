@@ -9,15 +9,18 @@ public class StatePatrulha: State
     public override void Awake()
     {
         base.Awake();
-
         // Criamos e populamos uma nova transição
-        Transition ToAtacando = new Transition();
-        ToAtacando.condition = new ConditionDistLT(transform,GameObject.FindWithTag("Player").transform,20.0f);
-        ToAtacando.target = GetComponent<StateAtaque>();
-        // Adicionamos a transição em nossa lista de transições
-        transitions.Add(ToAtacando);
-
-        steerable = GetComponent<SteerableBehaviour>();
+        if(GameObject.FindWithTag("Player")){
+            Transition ToAtacando = new Transition();
+            ToAtacando.condition = new ConditionDistLT(transform,GameObject.FindWithTag("Player").transform,20.0f);
+            ToAtacando.target = GetComponent<StateAtaque>();
+            // Adicionamos a transição em nossa lista de transições
+            transitions.Add(ToAtacando);
+            steerable = GetComponent<SteerableBehaviour>();
+        }
+        else{
+            Destroy(gameObject);
+        }
     }
 
     float angle = 0;

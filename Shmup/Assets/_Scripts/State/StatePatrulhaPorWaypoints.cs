@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatePatrulhaPorWaypoints : State
+public class StatePatrulhaPorWaypoints : State, IDamageable
 {
     public Transform[] waypoints;  
     Rigidbody2D rb;
+    private float lifes;
+    private float maxlifes = 2f;
+    GameManager gm;
+    public HealthBar HealthBar;
 
     public override void Awake()
     {
@@ -13,22 +17,52 @@ public class StatePatrulhaPorWaypoints : State
         // Configure a transição para outro estado aqui.
         rb = GetComponent<Rigidbody2D>();
     }
-
     public void Start()
     {
-        waypoints[0].position = transform.position;
-        waypoints[1].position = GameObject.FindWithTag("Player").transform.position;
+        lifes = maxlifes;
+        HealthBar.SetHealth(lifes, maxlifes);
+        gm = GameManager.GetInstance();
     }
 
     public override void Update()
     {
-        if(Vector3.Distance(transform.position, waypoints[1].position) > .1f) {
-            Vector3 direction = waypoints[1].position - transform.position;
-            direction.Normalize();
-            rb.MovePosition(rb.position + new Vector2(direction.x, direction.y) * Time.fixedDeltaTime);
-        } else {
-            waypoints[1].position = GameObject.FindWithTag("Player").transform.position;
+        if (gm.gameState != GameManager.GameState.GAME) return;
+        
+        if(GameObject.FindWithTag("Player")){
+            Vector3 screenBounds = GameObject.FindWithTag("Player").transform.position;
+
+            if(transform.position.x < (screenBounds.x - 15)){
+                Destroy(gameObject);
+            }
+        
+            else{
+                if(Vector3.Distance(transform.position, screenBounds) > .1f) {
+                    Vector3 direction = screenBounds - transform.position;
+                    direction.Normalize();
+                    rb.MovePosition(rb.position + new Vector2(direction.x, direction.y) * Time.fixedDeltaTime);
+                } else {
+                    screenBounds = GameObject.FindWithTag("Player").transform.position;
+                }
+            }
         }
+        else{
+            Destroy(gameObject);
+        }
+    }
+
+    public void TakeDamage()
+    {
+        gm.pontos += 10;
+        lifes--;
+        HealthBar.SetHealth(lifes, maxlifes);
+        
+        if(lifes <= 0) Die();
+    }
+
+    public void Die()
+    {
+        gm.pontos+=10;
+        Destroy(gameObject);
     }
  
 }

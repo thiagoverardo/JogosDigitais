@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ShotBehaviour : SteerableBehaviour
 {
+    GameManager gm;
+    void Start()
+    {
+        gm = GameManager.GetInstance();
+    }
     private void Update()
     {
+        if (gm.gameState != GameManager.GameState.GAME) return;
         Thrust(2,0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,4 +25,8 @@ public class ShotBehaviour : SteerableBehaviour
         }
         Destroy(gameObject);
    }
+   private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
