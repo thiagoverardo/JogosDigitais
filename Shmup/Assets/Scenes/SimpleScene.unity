@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3209212303436384058, guid: f7fa81a093548eb46a6e9e52948f85fc,
     type: 3}
-  respawnTime: 5
+  respawnTime: 4
 --- !u!4 &524007311
 Transform:
   m_ObjectHideFlags: 0
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3209212303436384058, guid: 5e98807d9ff6e08419760ed5a798d38c,
     type: 3}
-  respawnTime: 8
+  respawnTime: 7
 --- !u!4 &741247065
 Transform:
   m_ObjectHideFlags: 0
@@ -3454,8 +3454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000024408, y: 85}
-  m_SizeDelta: {x: 151.19041, y: 27.09122}
+  m_AnchoredPosition: {x: 0.00002861, y: 86.7}
+  m_SizeDelta: {x: 174.81203, y: 31.323887}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1597450677
 MonoBehaviour:
@@ -3489,9 +3489,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ESCAPE THE BOUNTY HUNTERS, ACTING
-
-    AS A DECOY TO SAVE YOUR PEOPLE'
+  m_Text: "DISTRACT THE BOUNTY HUNTERS WHILE YOUR \nPEOPLE ESCAPE SAFELY TO A NEW
+    PLANET"
 --- !u!222 &1597450678
 CanvasRenderer:
   m_ObjectHideFlags: 0

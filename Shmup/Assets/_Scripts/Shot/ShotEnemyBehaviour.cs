@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class ShotEnemyBehaviour : SteerableBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Inimigos") || collision.CompareTag("Inimigos2")) return;
+        if (collision.CompareTag("Inimigos") || collision.CompareTag("Inimigos2") || collision.CompareTag("Powerup") || collision.CompareTag("Powerup2")) return;
 
         IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
         if (!(damageable is null))

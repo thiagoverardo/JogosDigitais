@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 {
     private float lifes;
-    private float maxlifes = 3f;
+    public float maxlifes = 3f;
     GameManager gm;
     public HealthBar HealthBar;
     public AudioClip explosionSFX;
