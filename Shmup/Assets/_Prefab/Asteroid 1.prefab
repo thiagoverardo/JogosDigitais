@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 625689187509151851}
   - component: {fileID: 1928333210241258044}
   - component: {fileID: 1928333210241258047}
+  - component: {fileID: 2712376988722377218}
   m_Layer: 0
   m_Name: Asteroid 1
   m_TagString: Inimigos
@@ -166,7 +167,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   td: {fileID: 11400000, guid: 388701daaa55c334e9f5368eb44c325e, type: 2}
   HealthBar: {fileID: 7140076861107638600}
+  explosionSFX: {fileID: 8300000, guid: 5d52af1d0cebf1248a09ca0ef3edbc46, type: 3}
   tiro: {fileID: 1451986169587940565, guid: e23770e541643e44594b43e22e449c9a, type: 3}
+--- !u!95 &2712376988722377218
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410636528228303080}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b541ae3a2c4ed648846f30d8d9012f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5160029212794398152
 GameObject:
   m_ObjectHideFlags: 0

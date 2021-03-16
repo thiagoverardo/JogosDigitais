@@ -8,9 +8,12 @@ public class UI_FimDeJogo : MonoBehaviour
     {
         gm = GameManager.GetInstance();
 
-        if(gm.vidas > 0)
+        if(gm.vidas <= 0)
         {
             message.text = "GAME OVER";
+        }
+        if(gm.vidas >= 1000){
+            message.text = "EASTER EGG";
         }
     }
     public void Inicio()

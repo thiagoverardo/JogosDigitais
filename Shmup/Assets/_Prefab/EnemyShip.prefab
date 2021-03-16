@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   td: {fileID: 11400000, guid: 768ce0ddc56e012458d6df475443439d, type: 2}
   HealthBar: {fileID: 1891186685288298619}
+  explosionSFX: {fileID: 8300000, guid: 5d52af1d0cebf1248a09ca0ef3edbc46, type: 3}
   tiro: {fileID: 1451986169587940565, guid: e23770e541643e44594b43e22e449c9a, type: 3}
 --- !u!114 &3209212303436384035
 MonoBehaviour:

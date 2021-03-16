@@ -10,6 +10,9 @@ public class StatePatrulhaPorWaypoints : State, IDamageable
     private float maxlifes = 2f;
     GameManager gm;
     public HealthBar HealthBar;
+    public AudioClip explosionSFX;
+
+    private Animator anim;
 
     public override void Awake()
     {
@@ -22,6 +25,7 @@ public class StatePatrulhaPorWaypoints : State, IDamageable
         lifes = maxlifes;
         HealthBar.SetHealth(lifes, maxlifes);
         gm = GameManager.GetInstance();
+        anim = GetComponent<Animator>();
     }
 
     public override void Update()
@@ -52,17 +56,22 @@ public class StatePatrulhaPorWaypoints : State, IDamageable
 
     public void TakeDamage()
     {
-        gm.pontos += 10;
         lifes--;
         HealthBar.SetHealth(lifes, maxlifes);
         
         if(lifes <= 0) Die();
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void Die()
     {
-        gm.pontos+=10;
-        Destroy(gameObject);
+        anim.SetTrigger("Death");
+        AudioManager.PlaySFX(explosionSFX);
+        gm.pontos += 10;
     }
  
 }

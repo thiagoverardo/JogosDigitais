@@ -7,6 +7,9 @@ TagManager:
   - Inimigos
   - Tiro
   - Tiroinimigo
+  - Inimigos2
+  - Powerup
+  - Powerup2
   layers:
   - Default
   - TransparentFX

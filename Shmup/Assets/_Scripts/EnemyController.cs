@@ -8,11 +8,14 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
     private float maxlifes = 3f;
     GameManager gm;
     public HealthBar HealthBar;
+    public AudioClip explosionSFX;
+    private Animator anim;
     private void Start()
     {
         lifes = maxlifes;
         gm = GameManager.GetInstance();
         HealthBar.SetHealth(lifes, maxlifes);
+        anim = GetComponent<Animator>();
     }
     public GameObject tiro;
     public void Shoot()
@@ -23,23 +26,29 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
 
     public void TakeDamage()
     {
-        gm.pontos += 10;
         lifes--;
         HealthBar.SetHealth(lifes, maxlifes);
 
         if(lifes <= 0) Die();
     }
 
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void Die()
     {
-        Destroy(gameObject);
+        anim.SetTrigger("Death");
+        AudioManager.PlaySFX(explosionSFX);
+        gm.pontos += 20;
     }
 
     float angle = 0;
 
     private void FixedUpdate()
     {        
-        if (gm.gameState != GameManager.GameState.GAME) return;
+        if (gm.gameState != GameManager.GameState.GAME || lifes <= 0) return;
         
         if(GameObject.FindWithTag("Player")){
             Vector3 screenBounds = GameObject.FindWithTag("Player").transform.position;        
@@ -61,7 +70,7 @@ public class EnemyController : SteerableBehaviour, IShooter, IDamageable
     {
         if (collision.CompareTag("Player"))
         {
-            TakeDamage();
+            Die();
         }
     }  
 }

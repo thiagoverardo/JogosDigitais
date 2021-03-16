@@ -11,12 +11,12 @@ public class ShotBehaviour : SteerableBehaviour
     }
     private void Update()
     {
-        if (gm.gameState != GameManager.GameState.GAME) return;
+        if (gm.gameState != GameManager.GameState.GAME ) return;
         Thrust(2,0);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) return;
+        if (collision.CompareTag("Player") || collision.CompareTag("Powerup") || collision.CompareTag("Powerup2")) return;
         IDamageable damageable = collision.gameObject.GetComponent(typeof(IDamageable)) as IDamageable;
 
         if (!(damageable is null))
