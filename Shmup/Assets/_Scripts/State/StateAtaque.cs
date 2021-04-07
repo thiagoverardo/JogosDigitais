@@ -29,6 +29,7 @@ public class StateAtaque : State
     }
     public float shootDelay = 1.0f;
     private float _lastShootTimestamp = 0.0f;
+    
     public override void Update()
     {
 
